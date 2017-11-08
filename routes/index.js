@@ -1,19 +1,22 @@
-const router = require('koa-router')()
+const router = require('koa-router')();
 
 router.get('/', async (ctx, next) => {
-  await ctx.render('index', {
-    title: 'Hello Koa 2!'
-  })
-})
+    if (!ctx.session.user)
+        ctx.redirect('/login');
 
-router.get('/string', async (ctx, next) => {
-  ctx.body = 'koa2 string'
-})
+    await ctx.render('index', {
+        title: 'Hello Koa 2!'
+    })
+});
 
-router.get('/json', async (ctx, next) => {
-  ctx.body = {
-    title: 'koa2 json'
-  }
-})
+router.get('/login', async (ctx, next) => {
+    if (ctx.session.user)
+        ctx.redirect('/');
 
-module.exports = router
+    await ctx.render('login', {
+        title: 'need login'
+    })
+});
+
+
+module.exports = router;
