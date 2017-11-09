@@ -6,10 +6,9 @@ const onerror = require('koa-onerror');
 const bodyparser = require('koa-bodyparser');
 const logger = require('koa-logger');
 
-const passport = require(__dirname + '/routes/auth/passport.config.js');
+const passport = require(__dirname + '/config/passport.js');
 const auth = require(__dirname + '/routes/auth/auth.js');
 
-// Initializing jquery
 
 const app = new Koa();
 

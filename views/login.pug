@@ -28,7 +28,21 @@ block content
                         .ui.left.icon.input
                             i(class='lock icon')
                             input(type="password" name="password" placeholder="密码")
-                    .ui.fluid.large.teal.submit.button 登陆
+                    .ui.fluid.large.teal.submit.button#btn-login 登陆
                 .ui.error.message
             .ui.message EZ-Fin是一个记录和计算投资收益的管家</br>想使用？
                 a(href='#') 点击申请
+    script
+        |   $("#btn-login").click(function() {
+        |       $.ajax({
+        |           type: 'POST',
+        |           url: '/auth/login',
+        |           datatype: 'json',
+        |           data: {
+        |               username: $('input[name=username]').val(),
+        |               password: $('input[name=password]').val()
+        |           },
+        |           success: function(data,status,xhr) {
+        |               console.log(data); }
+        |       });
+        |   });

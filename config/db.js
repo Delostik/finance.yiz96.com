@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 let sequelize = new Sequelize('finance', 'finance', 'finance', {
     host: 'localhost',
-    dialect: 'mariadb',
+    dialect: 'mysql',
     pool: {
         max: 5,
         min: 0,
@@ -11,15 +11,17 @@ let sequelize = new Sequelize('finance', 'finance', 'finance', {
 });
 
 
-let UserTable = sequelize.define('user', {
+let UserTable = sequelize.define('users', {
         id: {
             type: Sequelize.BIGINT,
             primaryKey: true
         },
-        username: Sequelize.STRING(20),
-        password: Sequelize.STRING(128)
+        username: Sequelize.STRING(10),
+        password: Sequelize.STRING(64)
     },
     {timestamps: false}
 );
+
+
 
 module.exports = {UserTable};

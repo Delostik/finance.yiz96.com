@@ -1,22 +1,7 @@
 const router = require('koa-router')();
+const page = require(__dirname + '/../controllers/page.js');
 
-router.get('/', async (ctx, next) => {
-    if (!ctx.session.user)
-        ctx.redirect('/login');
-
-    await ctx.render('index', {
-        title: 'Hello Koa 2!'
-    })
-});
-
-router.get('/login', async (ctx, next) => {
-    if (ctx.session.user)
-        ctx.redirect('/');
-
-    await ctx.render('login', {
-        title: 'need login'
-    })
-});
-
+router.get('/', page.index);
+router.get('/login', page.login);
 
 module.exports = router;
